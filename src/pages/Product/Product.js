@@ -81,7 +81,7 @@ const Product = () => {
         <div className="col-6 d-flex justify-content-end">
           <Autocomplete
             disablePortal
-            className="mt-lg-4"
+            className="mt-lg-"
             id="combo-box-demo"
             options={categories}
             sx={{ width: 300 }}
