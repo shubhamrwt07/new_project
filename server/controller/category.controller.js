@@ -2,8 +2,8 @@ const categoryModel = require("../model/category.model");
 const productModel = require("../model/product.model");
 
 
-exports.addCategory = async (req, res) => {
-    try {
+const addCategory = async (req, res) => {
+    try {console.log(req.body);
         const { name, status } = req.body;
         const category = await categoryModel.create({ name, status })
         return res.status(200).json({ status: 200, message: "Category added successfully", response: category });
@@ -11,7 +11,9 @@ exports.addCategory = async (req, res) => {
         return res.status(500).json({ status: 500, message: error.message });
     };
 };
-exports.getAllCategories = async (req, res) => {
+
+
+const getAllCategories = async (req, res) => {
     try {
         const { status } = req.query;
         let query = {};
@@ -30,7 +32,7 @@ exports.getAllCategories = async (req, res) => {
     };
 };
 
-exports.getProductsByCategory = async (req, res) => {
+const getProductsByCategory = async (req, res) => {
     try {
         const { categoryId } = req.query;
         const productList = await productModel.find({ categoryId }).populate('categoryId').sort({ createdAt: -1 })
@@ -40,3 +42,10 @@ exports.getProductsByCategory = async (req, res) => {
         return res.status(500).json({ status: 500, message: error.message });
     };
 };
+
+
+module.exports = {
+    addCategory,
+    getAllCategories,
+    getProductsByCategory,
+}
