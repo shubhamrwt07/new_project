@@ -6,15 +6,20 @@ import { FaHeartCircleCheck } from 'react-icons/fa6';
 import { useDispatch, useSelector } from 'react-redux';
 import '../../style/Product.css';
 import 'animate.css';
-import { fetchProductData, incrementCount, selectCategory, addToCart, likeToCart } from '../../redux/Product/action';
+import { fetchProductData, incrementCount, selectCategory, addToCart, likeToCart, showAllMobiles } from '../../redux/Product/action';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import config from '../../config';
 import { Spinner } from 'react-bootstrap';
-import { big_bachat, profile_img, slide1, slide2, slide3, slide4, slide5, slide6 } from '../../assets/image';
+import { big_bachat, iron, motomobile, profile_img, slide1, slide2, slide3, slide4, slide5, slide6 } from '../../assets/image';
+import {  useNavigate } from 'react-router-dom';
 
 const Product = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate()
+  const [categoryMobile,setCategoryId] = useState()
+  console.log(categoryMobile,'ii')
+
   const productData = useSelector((state) => state.product.filteredData);
   const selectedCategory = useSelector((state) => state.product.selectedCategory);
   const [addedProducts, setAddedProducts] = useState([]);
@@ -45,6 +50,8 @@ const Product = () => {
   };
 
   const toggleLike = (index, item) => {
+    setCategoryId(item)
+
     setProducts((prevProducts) => {
       const updatedProducts = [...prevProducts];
       updatedProducts[index] = {
@@ -113,6 +120,10 @@ const Product = () => {
   const handleToggle = () => {
     setIsFolded(!isFolded);
   };
+  const allMobile = () =>{
+    dispatch(showAllMobiles(categoryMobile))
+    navigate('/mobilepage')
+  }
 
   return (
     <div className="container-fluid product-body bg-light">
@@ -284,21 +295,58 @@ const Product = () => {
         </div>
       )}
       <div className="row">
-        <div className="col-4">
-          <div className="row bg-plan-img p-lg-3">
+        <div className="col-4 p-3">
+          <div className="row bg-plan-img p-lg-3" onClick={allMobile}>
             <div className="col-6 ">
-              <h5>Name</h5>
+              <h5 className='product-name'>Name</h5>
               <div className="prodcut-content">
-                <p>*Add.2000$ Off On Exch</p>
-                <h3>moto name no</h3>
-                <h3>undifined</h3>
+                <p className='product-price text-light m-0'>*Add.2000$ Off On Exch</p>
+                <h3 className='product-name'>moto name no undifined</h3>
               </div>
               <div className="offer d-flex flex-column">
-                <img src={big_bachat} alt="" style={{ height: '70px', width: '70px' }} />
-                <span className='bg-white text-dark'>1 july to 10 july</span>
+                <img src={big_bachat} alt="" style={{ height: '70px', width: '100px' }} />
+                <span className='bg-white text-dark p-1 px-2' style={{width:'100px', fontSize:'12px'}}>1 july to 10 july</span>
               </div>
             </div>
-            <div className="col-6"></div>
+            <div className="col-6">
+              <img src={big_bachat} className='mt-lg-5' alt="" style={{height:'150px',width:"220px"}} />
+            </div>
+          </div>
+        </div>
+        <div className="col-4 p-3">
+          <div className="row bg-plan-img p-lg-3">
+            <div className="col-6 ">
+              <h5 className='product-name'>Longway</h5>
+              <div className="prodcut-content">
+                <p className='product-price text-light m-0'>*Add.2000$ Off On Exch</p>
+                <h3 className='product-name'>LONGWAY Accurate Heavy Weight Iron Press 750 Watt</h3>
+              </div>
+              <div className="offer d-flex flex-column">
+                <img src={big_bachat} alt="" style={{ height: '70px', width: '100px' }} />
+                <span className='bg-white text-dark p-1 px-2' style={{width:'100px', fontSize:'12px'}}>1 july to 10 july</span>
+              </div>
+            </div>
+            <div className="col-6">
+              <img src={iron} className='mt-lg-5' alt="" style={{height:'150px',width:"220px"}} />
+            </div>
+          </div>
+        </div>
+        <div className="col-4 p-3">
+          <div className="row bg-plan-img p-lg-3">
+            <div className="col-6 mt-lg-3 ">
+              <h5 className='product-name'>Motorola</h5>
+              <div className="prodcut-content">
+                <p className='product-price text-light m-0'>*Add.2000$ Off On Exch</p>
+                <h3 className='product-name'>moto g35 5G</h3>
+              </div>
+              <div className="offer d-flex flex-column">
+                <img src={big_bachat} alt="" style={{ height: '70px', width: '100px' }} />
+                <span className='bg-white text-dark p-1 px-2' style={{width:'100px', fontSize:'12px'}}>1 july to 10 july</span>
+              </div>
+            </div>
+            <div className="col-6">
+              <img src={motomobile} className='mt-lg-5' alt="" style={{height:'150px'}} />
+            </div>
           </div>
         </div>
       </div>

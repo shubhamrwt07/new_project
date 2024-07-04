@@ -9,7 +9,8 @@ import {
   SELECT_CATEGORY,
   ADD_TO_CART,
   REMOVE_FROM_CART,
-  CLEAR_CART
+  CLEAR_CART,
+  SHOW_ALL_MOBILES
 } from './constaint';
 
 export const fetchProductData = () => ({
@@ -56,4 +57,7 @@ export const removeFromCart = (productId) => ({
 
 export const clearCart = () => ({
   type: CLEAR_CART
+});
+export const showAllMobiles = () => ({
+  type: SHOW_ALL_MOBILES,
 });

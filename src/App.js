@@ -12,6 +12,7 @@ import Login from './componets/login/Login';
 import Account from './pages/Account/Account';
 import Cart from './pages/Cart/Cart';
 import './App.css';
+import Mobilepage from './pages/Product/Mobilepage';
 
 function App() {
   return (
@@ -23,13 +24,13 @@ function App() {
 
 function Main() {
   const location = useLocation();
-  const hideNavbarRoutes = ['/login', '/signup'];
+  const hideNavbarRoutes = ['/', '/signup'];
 
   return (
     <>
       {!hideNavbarRoutes.includes(location.pathname) && <Navbar />}
       <Routes>
-        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/home" element={<ProtectedRoute Component={Home} />} />
         <Route path="/product" element={<ProtectedRoute Component={ProductPage} />} />
@@ -37,6 +38,7 @@ function Main() {
         <Route path="/dashboard" element={<ProtectedRoute Component={Dashboard} />} />
         <Route path="/button" element={<ProtectedRoute Component={ButtonSite} />} />
         <Route path="/cart" element={<ProtectedRoute Component={Cart} />} />
+        <Route path="/mobilepage" element={<ProtectedRoute Component={Mobilepage} />} />
       </Routes>
       {!hideNavbarRoutes.includes(location.pathname) && <Footer />}
     </>
