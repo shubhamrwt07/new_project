@@ -14,14 +14,14 @@ import 'animate.css';
 const Signup = () => {
   const { register, reset, handleSubmit, formState: { errors } } = useForm();
   const navigate = useNavigate();
-  // const { user, loginWithRedirect, isAuthenticated, isLoading, error } = useAuth0(); // Destructure isLoading and error
-// console.log(user);
-// if (error) {
-//   return <div>Error: {error.message}</div>; 
-// }
-// if (isLoading) {
-//   return <div>Loading...</div>; 
-// }
+  const { user, loginWithRedirect, isAuthenticated, isLoading, error } = useAuth0(); // Destructure isLoading and error
+console.log(user);
+if (error) {
+  return <div>Error: {error.message}</div>; 
+}
+if (isLoading) {
+  return <div>Loading...</div>; 
+}
 
   const onSubmit = data => {
     reset();
@@ -97,9 +97,9 @@ const Signup = () => {
                 </div>
                 <p className='text-center mt-lg-3'>Already have an account? <span data-bs-toggle="tooltip" data-bs-placement="right" title="Click the Signin button" className='text-primary'>SignIn</span></p>
            
-                    {/* <div className="btn border w-100 border-dark mt-3 login-with-google-btn"  onClick={() => loginWithRedirect()} >
+                    <div className="btn border w-100 border-dark mt-3 login-with-google-btn"  onClick={() => loginWithRedirect()} >
                       <FcGoogle className='me-3' />Sign up with Google
-                    </div> */}
+                    </div>
              
               </Form>
             </div>
