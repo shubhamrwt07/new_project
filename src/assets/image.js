@@ -9,5 +9,7 @@ import slide6 from '../assets/slide6.webp'
 import logo from '../assets/Screenshot from 2024-07-03 13-42-33.png'
 import bgplanimg from '../assets/bgplanimg.jpg'
 import big_bachat from '../assets/big-bachatdays-removebg-preview.png'
+import motomobile from '../assets/moto.png'
+import iron from '../assets/iron-press-removebg-preview.png'
 
-export {profile_img,logi_img,slide1,slide2,slide3,slide4,slide5,slide6,logo,bgplanimg,big_bachat}
+export {profile_img,logi_img,slide1,slide2,slide3,slide4,slide5,slide6,logo,bgplanimg,big_bachat,motomobile,iron}

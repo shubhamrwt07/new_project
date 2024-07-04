@@ -50,8 +50,11 @@
   }
   .bg-plan-img{
     background-image: url('../assets//bgplanimg.jpg');
+    height: 300px;
     background-position: center;
     background-repeat: no-repeat;
+    cursor: pointer;
     
   }
+  
   

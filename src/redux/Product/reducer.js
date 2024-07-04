@@ -9,7 +9,8 @@ import {
   SELECT_CATEGORY,
   REMOVE_FROM_CART,
   CLEAR_CART,
-  ADD_TO_CART
+  ADD_TO_CART,
+  SHOW_ALL_MOBILES
 } from './constaint';
 
 const initialState = {
@@ -62,9 +63,17 @@ export const productReducer = (state = initialState, action) => {
         selectedCategory: action.payload,
         filteredData,
       };
+      case SHOW_ALL_MOBILES:
+        const mobileData = state.data.filter(product => product.category === 'Mobile');
+        return {
+          ...state,
+          selectedCategory: 'Mobile',
+          filteredData: mobileData,
+        };
     default:
       return state;
   }
+  
 };
 
 export const countReducer = (state = initialStateCount, action) => {

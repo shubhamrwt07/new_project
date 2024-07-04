@@ -1,4 +1,3 @@
-// saga.js
 import { call, put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 import { PRODUCT_LOADING, PRODUCT_SUCCESS, PRODUCT_ERROR } from './constaint';
