@@ -1,25 +1,36 @@
 const productModel = require('../model/product.model')
+const Category = require('../model/category.model')
 
 const createProduct = async (req, res) => {
-    try {
-      console.log('Request Body:', req.body);
-      console.log('Request Files:', req.file );
-      
-      const { name,description,price,categoryId } = req.body;
-      const image = req.file;  
-      const existingProduct = await productModel.findOne({ name });
-      if (existingProduct) {
-        return res.status(400).json({ status: 400, message: "Product with the same name already exists" });
-      }
-  
-      const imageNames = image.originalname;
-      const result = await productModel.create({ name,description,price,categoryId , image: imageNames });
+  try {
+      const { name, description, price, categoryId, subcategoryId, companyName, discount } = req.body;
+      const image = req.file;
+      // const category = await Category.findById(categoryId);
+      // if (!category) {
+      //     return res.status(400).json({ status: 400, message: "Category not found" });
+      // }
+      // const subcategory = category.subcategories.id(subcategoryId);
+      // if (!subcategory) {
+      //     return res.status(400).json({ status: 400, message: "Subcategory not found" });
+      // }
+      const imageName = image ? image.originalname : null;
+      const result = await productModel.create({ 
+          name, 
+          description, 
+          price, 
+          categoryId, 
+          subcategoryId, 
+          companyName, 
+          discount, 
+          image: imageName 
+      });
       return res.status(200).json({ status: 200, message: "Product added successfully", response: result });
-    } catch (error) {
+  } catch (error) {
       console.error('Error:', error);
       return res.status(500).json({ status: 500, message: error.message });
-    }
+  }
 };
+
 
 const getAllProducts = async (req, res) => {
   try {
@@ -56,6 +67,22 @@ const getOneProduct = async(req, res) => {
     return res.status(500).json({ status: 500, message: error.message });
   }
 }
+const getProductsBySubcategory = async (req, res) => {
+  try {
+    console.log('Query Params:', req.query); 
+      const { categoryId, subcategoryId } = req.query;
+      console.log('categoryId:', categoryId);
+console.log('subcategoryId:', subcategoryId);
+
+      const products = await productModel.find({
+          categoryId,
+          subcategoryId
+      });
+      return res.status(200).json({ status: 200, products });
+  } catch (error) {
+      return res.status(500).json({ status: 500, message: error.message });
+  }
+};
 const deleteProduct = async(req, res)=>{
   try {
     const product = await productModel.findByIdAndDelete(req.params.id);
@@ -70,5 +97,6 @@ module.exports = {
     createProduct,
     getAllProducts,
     deleteProduct,
-    getOneProduct
+    getOneProduct,
+    getProductsBySubcategory
 };
