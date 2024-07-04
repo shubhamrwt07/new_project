@@ -3,13 +3,21 @@ const { Schema } = mongoose;
 
 const productModel = new Schema(
     {
-        categoryId:{
+        categoryId: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "category",
+            ref: "Category",
+            required: true
+        },
+        subcategoryId: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Category.subcategories", 
+            required: true
+        },
+        companyName: {
+            type: String,
         },
         name: {
             type: String,
-            // required: true
         },
         image: {
             type: String,
@@ -19,15 +27,18 @@ const productModel = new Schema(
             type: Number,
             required: true,
         },
-        description:{
+        description: {
             type: String,
             required: true,
         },
-
+        discount: {
+            type: Number,
+            default: 0,
+        }
     },
     { versionKey: false, timestamps: true }
 );
 
-const product = mongoose.model("product", productModel);
+const product = mongoose.model("Product", productModel);
 
 module.exports = product;

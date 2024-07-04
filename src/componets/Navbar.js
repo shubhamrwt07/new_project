@@ -30,7 +30,7 @@ const Navbar = () => {
 
   const handleLogout = () => {
     sessionStorage.removeItem('user');
-    navigate('/login', { replace: true });
+    navigate('/', { replace: true });
     setAnchorElUser(null);
   };
 
@@ -141,7 +141,7 @@ const Navbar = () => {
         </div>
       </div>
     </nav>
-  );
+    );
 };
 
 export default Navbar;
