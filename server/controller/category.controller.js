@@ -3,14 +3,25 @@ const productModel = require("../model/product.model");
 
 
 const addCategory = async (req, res) => {
-    try {console.log(req.body);
-        const { name, status } = req.body;
-        const category = await categoryModel.create({ name, status })
+    try {
+        console.log(req.body);
+
+        const { name, status, subcategories } = req.body;
+        if (!name || typeof status !== 'boolean') {
+            return res.status(400).json({ status: 400, message: "Name and status are required" });
+        }
+        if (subcategories && !Array.isArray(subcategories)) {
+            return res.status(400).json({ status: 400, message: "Subcategories must be an array" });
+        }
+
+        const category = await categoryModel.create({ name, status, subcategories });
         return res.status(200).json({ status: 200, message: "Category added successfully", response: category });
     } catch (error) {
         return res.status(500).json({ status: 500, message: error.message });
-    };
+    }
 };
+
+
 
 
 const getAllCategories = async (req, res) => {

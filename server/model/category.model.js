@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
+
 const subcategorySchema = new Schema(
     {
         name: {
@@ -11,7 +12,6 @@ const subcategorySchema = new Schema(
             required: true
         }
     },
-    { _id: false } 
 );
 const categoryModel = new Schema(
     {
@@ -25,8 +25,7 @@ const categoryModel = new Schema(
         },
         subcategories: [
             subcategorySchema
-
-        ] ,
+        ],
     },
     { versionKey: false, timestamps: true }
 );
