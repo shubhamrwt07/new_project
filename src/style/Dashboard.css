@@ -1,0 +1,71 @@
+/* src/components/Dashboard.css */
+
+/* General Container Styling */
+.container-dashboard {
+  padding: 20px;
+}
+
+/* Row Styling */
+.row-dashboard {
+  margin-bottom: 20px;
+}
+
+/* Card Styling */
+.card-dashboard {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: none;
+  border-radius: 10px;
+}
+
+.card-dashboard h5 {
+  font-size: 1.25rem;
+}
+
+.card-dashboard p {
+  font-size: 1rem;
+}
+
+
+
+.card-body {
+  padding: 20px;
+}
+
+.card-title {
+  margin-bottom: 15px;
+}
+
+/* Chart Container Styling */
+.card-dashboard .card-header {
+  background-color: #fff;
+  border-bottom: 1px solid #eaeaea;
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.card-dashboard .card-body {
+  padding: 30px;
+}
+
+/* Media Query for Mobile Devices */
+@media (max-width: 767.98px) {
+  .card-body {
+    padding: 15px;
+  }
+
+  .card-title {
+    font-size: 1.1rem;
+  }
+
+  .card p {
+    font-size: 0.9rem;
+  }
+
+  .card .card-header {
+    font-size: 1rem;
+  }
+
+  .container-fluid {
+    padding: 10px;
+  }
+}

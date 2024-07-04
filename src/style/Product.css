@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+NG+Modern:wght@100..400&display=swap');
+.product-body{
+    margin-top: 6% !important;
+}
+.product-heading{
+    font-family: 'Courier New', Courier, monospace;
+}
+.custom-modal .modal-dialog {
+    position: fixed;
+    right: 0;
+    margin: 0;
+    height: 100%;
+    max-width: 400px; /* Adjust the width as needed */
+  }
+  
+  .custom-modal .modal-content {
+    height: 100%;
+    border-radius: 0;
+  }
+  /* cart css */
+  .zoom-container {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .zoom-image {
+    transition: transform 0.3s ease, transform-origin 0.3s ease;
+  }
+  
+  .zoom-container:hover .zoom-image {
+    transform: scale(1.5);
+    cursor: zoom-in;
+  }
+  
+  
+  

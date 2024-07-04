@@ -1,0 +1,11 @@
+// constaint.js
+export const PRODUCT_LOADING = 'PRODUCT_LOADING';
+export const PRODUCT_SUCCESS = 'PRODUCT_SUCCESS';
+export const PRODUCT_ERROR = 'PRODUCT_ERROR';
+export const LIKE_TO_CART = 'LIKE_TO_CART';
+export const REMOVE_LIKE_FROM_CART = 'REMOVE_LIKE_FROM_CART';
+export const INCREMENT_COUNT = 'INCREMENT_COUNT';
+export const SELECT_CATEGORY = 'SELECT_CATEGORY';
+export const ADD_TO_CART = 'ADD_TO_CART';
+export const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
+export const CLEAR_CART = 'CLEAR_CART';
