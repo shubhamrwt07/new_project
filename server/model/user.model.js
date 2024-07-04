@@ -5,15 +5,12 @@ const userModel = new Schema(
     {
         firstName:{
             type: String,
-            required: true
         },
         lastName: {
             type: String,
-            required: true
         },
         phoneNumber: {
             type: String,
-            required: true,
         },
         email: {
             type: String,
@@ -21,12 +18,10 @@ const userModel = new Schema(
         },
         password: {
             type: String,
-            required: true
         },
     },
-    { versionKey: false, timestamps: true }
+    {timestamps: true }
 );
-
 const user = mongoose.model("users", userModel);
 
 module.exports = user;

@@ -2,18 +2,16 @@ const express = require("express");
 const app = express();
 const passport = require("./middleware/passport");
 const cors = require("cors");
-const bodyParser = require('body-parser');
 // const cookieSession = require('cookie-session');
 var session = require('express-session')
 
 
 require("dotenv").config();
 require("./config/db.config"); 
-require("./routes/index")(app);
 
 app.use(cors());
 app.use(express.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+require("./routes/index")(app);
 
 // app.use(cookieSession({
 //     name: 'session',
