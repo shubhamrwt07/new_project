@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import { Auth0Provider } from '@auth0/auth0-react';
+// import { Auth0Provider } from '@auth0/auth0-react';
 import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
 import ButtonSite from './pages/Button';
@@ -10,24 +10,20 @@ import Footer from './componets/Footer';
 import ProtectedRoute from './componets/PrivateRoute';
 import Signup from './componets/login/Signup';
 import Login from './componets/login/Login';
-// import { AuthProvider } from './componets/AuthContext';
+import { AuthProvider } from './componets/AuthContext';
 import Account from './pages/Account/Account';
 import './App.css'
 import Cart from './pages/Cart/Cart';
 
 function App() {
   return (
-    <Auth0Provider
-    domain="srwt.us.auth0.com"
-    clientId="whTOAoRVZ1ZsBCrNYAzmGMRiIfn7n6Gr"
-    authorizationParams={{
-      redirect_uri: window.location.origin
-    }}
+    <AuthProvider
+ 
   >
       <Router>
         <Main />
       </Router>
-          </Auth0Provider>
+          </AuthProvider>
   );
 }
 

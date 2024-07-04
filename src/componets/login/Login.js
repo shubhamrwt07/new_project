@@ -19,13 +19,7 @@ console.log(user);
     reset();
   };
 
-  if (isLoading) {
-    return <div>Loading...</div>; 
-  }
-
-  if (error) {
-    return <div>Error: {error.message}</div>; 
-  }
+ 
 
   if (isAuthenticated) {
     return <Navigate to={'/product'} replace />; 
@@ -80,9 +74,7 @@ console.log(user);
                   </Button>
                 </div>
               </Form>
-              <Button className='login-with-google-btn' onClick={() => loginWithRedirect()}>
-                Sign In With Google
-              </Button>
+           
             </div>
           </div>
         </Col>

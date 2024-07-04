@@ -31,6 +31,27 @@
     transform: scale(1.5);
     cursor: zoom-in;
   }
-  
-  
+  .product-name{
+    font-size: 20px;
+    font-weight: normal;
+  }
+  .product-price{
+    font-size: 15px;
+    font-weight: 500;
+
+  }
+  .product-desc{
+    font-size: 15px;
+    font-family: serif;
+  }
+  .slider-img{
+    filter: blur(10px);
+    filter: brightness(60%);
+  }
+  .bg-plan-img{
+    background-image: url('../assets//bgplanimg.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    
+  }
   

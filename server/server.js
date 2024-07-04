@@ -9,11 +9,12 @@ var session = require('express-session')
 
 require("dotenv").config();
 require("./config/db.config"); 
-require("./routes/index")(app);
 
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+require("./routes/index")(app);
+
 
 // app.use(cookieSession({
 //     name: 'session',
