@@ -2,8 +2,6 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAuth0 } from '@auth0/auth0-react';
-
 import '../../style/login.css';
 import TextField from '@mui/material/TextField';
 import { FcGoogle } from "react-icons/fc";
@@ -14,23 +12,25 @@ import 'animate.css';
 const Signup = () => {
   const { register, reset, handleSubmit, formState: { errors } } = useForm();
   const navigate = useNavigate();
-  const { user, loginWithRedirect, isAuthenticated, isLoading, error } = useAuth0(); // Destructure isLoading and error
-console.log(user);
-if (error) {
-  return <div>Error: {error.message}</div>; 
-}
-if (isLoading) {
-  return <div>Loading...</div>; 
-}
+  const { signUpWithGoogle } = useAuth();
 
   const onSubmit = data => {
     reset();
     console.log(data);
   };
 
- 
+  const handleGoogleSuccess = async (response) => {
+    try {
+      await signUpWithGoogle(response);
+      navigate('/home');
+    } catch (error) {
+      console.error('Google Sign-Up Error:', error);
+    }
+  };
 
- 
+  const handleGoogleFailure = (error) => {
+    console.error('Google Sign-Up Error:', error);
+  };
 
   return (
     <Container fluid className='bg-img-img'>
@@ -96,11 +96,17 @@ if (isLoading) {
                   </Button>
                 </div>
                 <p className='text-center mt-lg-3'>Already have an account? <span data-bs-toggle="tooltip" data-bs-placement="right" title="Click the Signin button" className='text-primary'>SignIn</span></p>
-           
-                    <div className="btn border w-100 border-dark mt-3 login-with-google-btn"  onClick={() => loginWithRedirect()} >
+                <GoogleLogin
+                  clientId="YOUR_GOOGLE_CLIENT_ID"
+                  render={renderProps => (
+                    <div className="btn border w-100 border-dark mt-3" onClick={renderProps.onClick} disabled={renderProps.disabled}>
                       <FcGoogle className='me-3' />Sign up with Google
                     </div>
-             
+                  )}
+                  onSuccess={handleGoogleSuccess}
+                  onFailure={handleGoogleFailure}
+                  cookiePolicy={'single_host_origin'}
+                />
               </Form>
             </div>
           </div>
