@@ -8,7 +8,7 @@ const ProtectedRoute = (props) => {
 useEffect(()=>{
     let login= sessionStorage.getItem('user')
     if(!login){
-navigate('/product')
+navigate('/home')
     }
 },[])
 
