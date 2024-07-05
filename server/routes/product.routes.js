@@ -7,4 +7,5 @@ module.exports = function Route(app) {
   app.get("/api/getOneProduct/:id", productController.getOneProduct);
   app.get('/api/getProductsBySubcategory',productController.getProductsBySubcategory);
   app.delete("/api/deleteProduct/:id", productController.deleteProduct);
+  // app.get("/api/getAllProductss",productController.getAllProductss)
 };
