@@ -34,7 +34,11 @@ const productModel = new Schema(
         discount: {
             type: Number,
             default: 0,
-        }
+        },
+        discountedPrice: {
+             type: Number 
+            }
+
     },
     { versionKey: false, timestamps: true }
 );

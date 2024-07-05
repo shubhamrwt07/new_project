@@ -1,20 +1,24 @@
 const productModel = require('../model/product.model')
-const Category = require('../model/category.model')
+// const Category = require('../model/category.model')
+// const GlobalDiscount = require("../model/globalDiscount.model");
+// const NewUserDiscount = require("../model/newUserDiscount.model")
+function generateRandomDiscount(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
 const createProduct = async (req, res) => {
   try {
-      const { name, description, price, categoryId, subcategoryId, companyName, discount } = req.body;
+      const { name, description, price, categoryId, subcategoryId, companyName } = req.body;
       const image = req.file;
-      // const category = await Category.findById(categoryId);
-      // if (!category) {
-      //     return res.status(400).json({ status: 400, message: "Category not found" });
-      // }
-      // const subcategory = category.subcategories.id(subcategoryId);
-      // if (!subcategory) {
-      //     return res.status(400).json({ status: 400, message: "Subcategory not found" });
-      // }
       const imageName = image ? image.originalname : null;
-      const result = await productModel.create({ 
+      const mobileSubcategoryId = '668680c4aa3e5610e05ff0cc';
+      let discount = 0;
+      if (subcategoryId === mobileSubcategoryId) {
+          discount = generateRandomDiscount(20, 95);
+      }
+      const discountedPrice = price - (price * (discount / 100));
+
+      const newProduct = new productModel({ 
           name, 
           description, 
           price, 
@@ -22,9 +26,11 @@ const createProduct = async (req, res) => {
           subcategoryId, 
           companyName, 
           discount, 
-          image: imageName 
+          image: imageName,
+          discountedPrice
       });
-      return res.status(200).json({ status: 200, message: "Product added successfully", response: result });
+      await newProduct.save();
+      return res.status(201).json({ status: 201, message: "Product added successfully", data: newProduct });
   } catch (error) {
       console.error('Error:', error);
       return res.status(500).json({ status: 500, message: error.message });
@@ -69,10 +75,10 @@ const getOneProduct = async(req, res) => {
 }
 const getProductsBySubcategory = async (req, res) => {
   try {
-    console.log('Query Params:', req.query); 
+    // console.log('Query Params:', req.query); 
       const { categoryId, subcategoryId } = req.query;
-      console.log('categoryId:', categoryId);
-console.log('subcategoryId:', subcategoryId);
+      // console.log('categoryId:', categoryId);
+// console.log('subcategoryId:', subcategoryId);
 
       const products = await productModel.find({
           categoryId,
@@ -83,6 +89,9 @@ console.log('subcategoryId:', subcategoryId);
       return res.status(500).json({ status: 500, message: error.message });
   }
 };
+
+
+
 const deleteProduct = async(req, res)=>{
   try {
     const product = await productModel.findByIdAndDelete(req.params.id);
@@ -92,6 +101,11 @@ const deleteProduct = async(req, res)=>{
     return res.status(500).json({ status: 500, message: error.message });
   }
 }
+
+
+
+
+
 
 module.exports = {
     createProduct,
